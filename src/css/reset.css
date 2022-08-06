@@ -1,0 +1,16 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, picture, canvas, svg {
+  display: block;
+  max-width: 100%;
+  line-height: 0;
+}
+input, button, textarea {
+  font: inherit;
+}
+p, h1, h2, h3 {
+  overflow-wrap: break-word;
+}

@@ -1,0 +1,182 @@
+:root {
+    --White: hsl(0, 0%, 100%);
+    --gray-100: hsl(212, 45%, 89%);
+    --blue-100: hsl(220, 15%, 55%);
+    --blue-600: hsl(218, 44%, 22%);
+}
+
+
+body {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background-image: linear-gradient(to left top, var(--gray-100) , var(--blue-100));
+    background-size: 100%;
+    background-color: hsl(212, 45%, 89%);
+}
+
+
+#main {
+    display: grid;
+    place-items: center;
+}
+
+/* tilting card */
+
+.card-wrapper {
+    max-width: 21rem;
+    margin-block: 2.5rem;
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    position: relative;
+}
+
+.mouse-position-tracker {
+    position: absolute;
+    opacity: 0.1;
+    inset: 0;
+    z-index: 2;
+}
+
+
+.mouse-position-tracker:nth-of-type(3n) {
+    grid-column: 3 / 4;
+}
+
+
+.mouse-position-tracker:nth-of-type(3n - 1) {
+    grid-column: 2 / 3;
+}
+
+
+.mouse-position-tracker:nth-of-type(3n - 2) {
+    grid-column: 1 / 2;
+}
+
+.mouse-position-tracker:nth-child( n + 1):nth-child(-n + 3) {
+    opacity: 1;
+    grid-row: 1 / 2;
+}
+
+
+.mouse-position-tracker:nth-child( n + 4):nth-child(-n + 6) {
+    opacity: 1;
+    grid-row: 2 / 3;
+}
+
+
+.mouse-position-tracker:nth-child( n + 7):nth-child(-n + 9) {
+    opacity: 1;
+    grid-row: 3 / 4;
+}
+
+
+
+/* Card Content */
+.card-content {
+    --perspective:500px ;
+    --rotationX:0 ;
+    --rotationY:0 ;
+    --angle:15deg ;
+    border-radius: 0.5rem;
+    background-color: var(--White);
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transform: perspective(var(--perspective)) rotateX(var(--rotationX)) rotateY(var(--rotationY));
+    transition: transform 350ms ease;
+    box-shadow: 0 0 0.4rem hsl(218, 44%, 22%);
+
+}
+
+
+
+.mouse-position-tracker:nth-child(1):hover ~ .card-content {
+    --rotationX : var(--angle);
+    --rotationY : calc(var(--angle) * -1);
+}
+
+
+.mouse-position-tracker:nth-child(2):hover ~ .card-content {
+    --rotationX :var(--angle);
+}
+
+
+
+.mouse-position-tracker:nth-child(3):hover ~ .card-content {
+    --rotationX : var(--angle);
+    --rotationY : var(--angle);
+}
+
+
+
+.mouse-position-tracker:nth-child(4):hover ~ .card-content {
+    --rotationY :calc(var(--angle) * -1);
+}
+
+
+
+.mouse-position-tracker:nth-child(6):hover ~ .card-content {
+    --rotationY : var(--angle);
+}
+
+
+.mouse-position-tracker:nth-child(7):hover ~ .card-content {
+    --rotationX : calc(var(--angle) * -1);
+    --rotationY : calc(var(--angle) * -1);
+}
+
+
+.mouse-position-tracker:nth-child(8):hover ~ .card-content {
+    --rotationX :calc(var(--angle) * -1);
+}
+
+
+
+.mouse-position-tracker:nth-child(9):hover ~ .card-content {
+    --rotationX :calc(var(--angle) * -1);
+    --rotationY : var(--angle);
+
+}
+
+
+.card-content > section {
+    text-align: center;
+    padding-inline: 1rem ;
+    padding-block-end: 1.5rem;
+}
+
+.card-content > section > p {
+    color: hsl(220, 15%, 55%);
+}
+
+.qr-code-container {
+    padding: 1rem;
+}
+
+.qr-code-container img {
+    max-width: 100%;
+    border-radius: 1rem;
+}
+
+.download-btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    background-color: var(--blue-600);
+    color: var(--gray-100);
+    border-radius: 1rem;
+    transition: all 300ms ease-in-out;
+}
+
+.download-btn:hover, .download-btn:focus {
+    opacity: 0.75;
+    transform: scale(1.1);
+}
